@@ -1,0 +1,23 @@
+services:
+  db:
+    image: postgres:15
+    container_name: pastelaria-api-db
+    environment:
+      POSTGRES_DB: pastelaria
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: pastelaria@123
+    ports:
+      - "5432:5432"
+      
+  api:
+    build: .
+    ports: 
+      - "8181:8181"
+    container_name: pastelaria-api
+    working_dir: /app/pastelaria-api
+    volumes:
+      - .:/app/pastelaria-api
+    depends_on: 
+      - db
+    command: >
+      sh -c "php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=8181"
