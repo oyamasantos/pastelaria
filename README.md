@@ -16,7 +16,8 @@ docker exec -it pastelaria-api php artisan test
 ```
 
 Colletion para teste na raiz do projeto:
+```bash
 pastelaria.postman_collection.json 
-
+```
 
 
