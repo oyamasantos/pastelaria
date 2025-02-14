@@ -35,12 +35,12 @@ class ProductController extends Controller
             return response()->json($product, 201);
         } catch (ValidationException $e) {
             return response()->json([
-                'message' => 'Erro de validação',
+                'message' => 'Validation error',
                 'errors' => $e->errors(),
             ], 422);
         } catch (\Exception $e) {
             return response()->json([
-                'message' => 'Erro ao criar produto',
+                'message' => 'Error creating product',
             ], 500);
         }
     }
@@ -50,7 +50,7 @@ class ProductController extends Controller
         try {
             return response()->json(Product::findOrFail($id));
         } catch (ModelNotFoundException $e) {
-            return response()->json(['message' => 'Produto não encontrado'], 404);
+            return response()->json(['message' => 'Product not found.'], 404);
         }
     }
 
@@ -79,10 +79,10 @@ class ProductController extends Controller
                 'errors' => $e->errors(),
             ], 422);
         } catch (ModelNotFoundException $e) {
-            return response()->json(['message' => 'Produto não encontrado'], 404);
+            return response()->json(['message' => 'Product not found.'], 404);
         } catch (\Exception $e) {
             return response()->json([
-                'message' => 'Erro ao atualizar produto',
+                'message' => 'Error updating product',
             ], 500);
         }
     }
@@ -94,12 +94,12 @@ class ProductController extends Controller
             Storage::delete($product->photo);
             $product->delete();
 
-            return response()->json(['message' => 'Produto deletado'], 200);
+            return response()->json(['message' => 'Product delete'], 200);
         } catch (ModelNotFoundException $e) {
-            return response()->json(['message' => 'Produto não encontrado'], 404);
+            return response()->json(['message' => 'Product not found.'], 404);
         } catch (\Exception $e) {
             return response()->json([
-                'message' => 'Erro ao deletar produto',
+                'message' => 'Error delete',
             ], 500);
         }
     }

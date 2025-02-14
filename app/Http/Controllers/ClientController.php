@@ -30,7 +30,7 @@ class ClientController extends Controller
             return response()->json(Client::create($validated), 201);
         } catch (ValidationException $e) {
             return response()->json([
-                'message' => 'Erro de validação',
+                'message' => 'Validation error',
                 'errors' => $e->errors(),
             ], 422);
         }
@@ -62,7 +62,7 @@ class ClientController extends Controller
     
         } catch (ValidationException $e) {
             return response()->json([
-                'message' => 'Erro de validação',
+                'message' => 'Validation error',
                 'errors' => $e->errors(),
             ], 422);
         }
@@ -78,7 +78,7 @@ class ClientController extends Controller
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             return response()->json(['message' => 'Client not found'], 404);
         } catch (\Exception $e) {
-            return response()->json(['message' => 'Erro ao deletar cliente'], 500);
+            return response()->json(['message' => 'Error deleting client'], 500);
         }
     }
 }
